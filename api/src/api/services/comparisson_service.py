@@ -56,7 +56,10 @@ def is_same_seize(before, after):
 def initialize_comparison_resources():
     comp_id = str(uuid4())
     comp_dir = STORAGE / comp_id
-    comp_dir.mkdir()
+    try:
+        comp_dir.mkdir()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to create comparison resources: {e}")
     return comp_id, comp_dir
 
 def generate_image_paths(comp_dir):
