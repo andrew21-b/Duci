@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     DATABASE_PASSWORD: Optional[str] = None
 
     class Config:
-    env_file = ".env"
+        env_file = "src/api/.env"
 
     @property
     def DATABASE_URL(self):
