@@ -1,7 +1,11 @@
 import cv2
 import numpy as np
+from uuid import uuid4
+from fastapi import HTTPException
+from src.api.controller.v1.endpoints.comparison import STORAGE
+from src.api.models.comparison import Comparison
 
-def compare_images(before_path: str, after_path: str, diff_path: str):
+def compare_images(before_path: str, after_path: str, diff_path: str) -> float:
     before, after = load_images(before_path, after_path)
 
     after = is_same_seize(before, after)
@@ -27,7 +31,7 @@ def compare_images(before_path: str, after_path: str, diff_path: str):
 
     return diff_percent
 
-def count_changed_pixels(thresh):
+def count_changed_pixels(thresh) -> float:
     diff_pixels = np.count_nonzero(thresh)
     total_pixels = thresh.size
     return (diff_pixels / total_pixels) * 100
@@ -44,3 +48,22 @@ def is_same_seize(before, after):
     if before.shape != after.shape:
         after = cv2.resize(after, (before.shape[1], before.shape[0]))
     return after
+
+
+def initialize_comparison_resources():
+    comp_id = str(uuid4())
+    comp_dir = STORAGE / comp_id
+    comp_dir.mkdir()
+    return comp_id, comp_dir
+
+def generate_image_paths(comp_dir):
+    before_path = comp_dir / "before.png"
+    after_path = comp_dir / "after.png"
+    diff_path = comp_dir / "diff.png"
+    return str(before_path), str(after_path), str(diff_path)
+
+def get_comparison_by_id(comp_id, db):
+    comparison = db.query(Comparison).filter(Comparison.id == comp_id).first()
+    if not comparison:
+        raise HTTPException(status_code=404, detail="Comparison not found")
+    return comparison
