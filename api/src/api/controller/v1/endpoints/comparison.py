@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, File, UploadFile
+from fastapi import APIRouter, Depends, File, Form, UploadFile
 from sqlalchemy.orm import Session
 from src.api.db.connection import get_session
 from src.api.models.comparison import Comparison
@@ -11,6 +11,7 @@ router = APIRouter()
 async def create_comparison(
     before: UploadFile = File(...),
     after: UploadFile = File(...),
+    threshold: int = Form(30),
     db: Session = Depends(get_session)
 ):
     comp_id, comp_dir = initialize_comparison_resources()
@@ -22,7 +23,7 @@ async def create_comparison(
     with open(after_path, "wb") as f:
         f.write(await after.read())
 
-    diff_score = compare_images(before_path, after_path, diff_path)
+    diff_score = compare_images(before_path, after_path, diff_path, threshold)
 
     comparison = Comparison(
         id = comp_id,

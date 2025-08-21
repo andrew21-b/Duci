@@ -8,7 +8,7 @@ from src.api.models.comparison import Comparison
 STORAGE = Path("comparisons")
 STORAGE.mkdir(exist_ok=True)
 
-def compare_images(before_path: str, after_path: str, diff_path: str) -> float:
+def compare_images(before_path: str, after_path: str, diff_path: str, threshold: int) -> float:
     before, after = load_images(before_path, after_path)
 
     after = is_same_seize(before, after)
@@ -17,7 +17,7 @@ def compare_images(before_path: str, after_path: str, diff_path: str) -> float:
 
     gray = cv2.cvtColor(diff, cv2.COLOR_BGR2GRAY)
 
-    _, thresh = cv2.threshold(gray, 30, 255, cv2.THRESH_BINARY)
+    _, thresh = cv2.threshold(gray, threshold, 255, cv2.THRESH_BINARY)
 
     diff_percent = count_changed_pixels(thresh)
 
