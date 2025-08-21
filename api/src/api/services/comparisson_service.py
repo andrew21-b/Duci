@@ -1,9 +1,12 @@
 import cv2
 import numpy as np
+from pathlib import Path
 from uuid import uuid4
 from fastapi import HTTPException
-from src.api.controller.v1.endpoints.comparison import STORAGE
 from src.api.models.comparison import Comparison
+
+STORAGE = Path("comparisons")
+STORAGE.mkdir(exist_ok=True)
 
 def compare_images(before_path: str, after_path: str, diff_path: str) -> float:
     before, after = load_images(before_path, after_path)
