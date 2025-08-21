@@ -60,9 +60,9 @@ def initialize_comparison_resources():
     return comp_id, comp_dir
 
 def generate_image_paths(comp_dir):
-    before_path = comp_dir / "before.png"
-    after_path = comp_dir / "after.png"
-    diff_path = comp_dir / "diff.png"
+    before_path = (comp_dir / "before.png").resolve()
+    after_path = (comp_dir / "after.png").resolve()
+    diff_path = (comp_dir / "diff.png").resolve()
     return str(before_path), str(after_path), str(diff_path)
 
 def get_comparison_by_id(comp_id, db):
