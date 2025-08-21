@@ -8,7 +8,7 @@ For the frontend, I am using React with Vite and Tailwind CSS for styling.
 ## Setup Instructions
 
 The setup assumes some prerequisites are met before running both apps.
-The database needs to be initialized on your machine. PostgreSQL must be installed, and the database `duku` must exist.
+The database needs to be initialised on your machine. PostgreSQL must be installed, and the database `duku` must exist.
 
 ### Prerequisites
 
