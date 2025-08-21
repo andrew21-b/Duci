@@ -39,7 +39,7 @@ async def create_comparison(
     return {
         "id": comp_id,
         "difference_score": diff_score,
-        "diff_image_url": f"/comparison/{comp_id}/diff.png"
+        "diff_image_url": f"/comparisons/{comp_id}/diff.png"
     }
 
 @router.get("/{comp_id}")
