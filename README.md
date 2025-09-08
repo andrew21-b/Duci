@@ -1,7 +1,7 @@
 
-# DUKU AI | Coding Task: Visual Change Detection MVP
+# Visual Change Detection MVP
 
-This is my submission for the Duku coding task. My solution consists of a PostgreSQL database and a FastAPI backend, using Alembic for database migrations, SQLAlchemy for models, and Pydantic for data validation. I am using Poetry as my package manager and for virtual environment management.
+This is my solution, it consists of a PostgreSQL database and a FastAPI backend, using Alembic for database migrations, SQLAlchemy for models, and Pydantic for data validation. I am using Poetry as my package manager and for virtual environment management.
 
 For the frontend, I am using React with Vite and Tailwind CSS for styling.
 
