@@ -14,7 +14,7 @@ The database needs to be initialised on your machine. PostgreSQL must be install
 
 1. Clone the repository:
     ```powershell
-    git pull https://github.com/andrew21-b/DukuCodingTask.git
+    git pull https://github.com/andrew21-b/Duci.git
     ```
 
 2. Change to the repository directory:
