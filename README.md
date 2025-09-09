@@ -19,7 +19,7 @@ The database needs to be initialised on your machine. PostgreSQL must be install
 
 2. Change to the repository directory:
     ```powershell
-    cd DukuCodingTask
+    cd Duci
     ```
 
 3. Change to the API directory:
@@ -81,11 +81,11 @@ Open a new terminal.
     npm run dev
     ```
 
-## Assumptions Made
+## Assumptions made
 
 The main assumption is that users will upload screenshots of the app or website with the same dimensions. The comparison expects the images to be the same size. If not, as you can see with `test_images`, any difference in size or spacing will be counted as a difference.
 
-## What I'd Improve With More Time
+## What I'd improve in the future
 
 There are many things I would improve if I had more time, from the system architecture to the build systems. Here are some:
 
